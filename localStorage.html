@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+        }
+        .btn {
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn" onclick="toggleMode()">Toogle Mode</button>
+    <button class="btn" onclick="clearMode()">Clear Mode</button>
+
+    <script>
+        function onLoad() {
+            const savedMode = localStorage.getItem('mode') || 'light';
+            document.body.style.backgroundColor = savedMode === 'dark' ? 'black' : 'white';
+        }
+
+        function clearMode() {
+            localStorage.removeItem('mode');
+        }
+
+        function toggleMode() {
+            const currMode = localStorage.getItem('mode');
+            const newMode = currMode === 'dark' ? 'light' : 'dark';
+
+            document.body.style.backgroundColor = newMode === 'light' ? 'white' : 'black';
+
+            localStorage.setItem('mode', newMode);
+        }
+
+        onLoad();
+    </script>
+</body>
+</html>
